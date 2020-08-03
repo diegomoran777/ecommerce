@@ -26,7 +26,7 @@ public class SpringBackend extends SpringBootServletInitializer implements Comma
 
 	@Override
 	public void run(String... args) throws Exception {
-		MercadoPago.SDK.setAccessToken("APP_USR-4047535620856855-071412-9fedaeb127c19a881a8db81495ef03ff-179043659");
+		MercadoPago.SDK.setAccessToken("TOKENMP");
 	}
 
 }
