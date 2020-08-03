@@ -1,0 +1,115 @@
+<!--Nav bar--> 
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xl-12">
+        <nav class="navbar navbar-expand-sm  navbar-dark">
+            <a class="navbar-brand text-white" [routerLink]="['/home']">
+                <img src="./../../../assets/images/fenix2.png" width="30" height="30" class="d-inline-block align-top" alt=""> <i class="fab fa-foursquare ml-1"></i>enix
+            </a>
+            <span class="ml-auto p-2 bd-highlight text-white" id="userNameMobile">
+                <i class="fas fa-user-circle"></i> 
+                {{userName}}
+            </span>
+            <button class="navbar-toggler" 
+                    type="button" 
+                    data-toggle="collapse" 
+                    data-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item" routerLinkActive="active">
+                        <a class="nav-link" 
+                           [routerLink]="['/home']">
+                           Home
+                        </a>
+                    </li>
+
+                    <!--Categories-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" 
+                           data-toggle="dropdown" href="#" 
+                           role="button" 
+                           aria-haspopup="true" 
+                           aria-expanded="false">
+                           Categorias
+                        </a>
+                        <div class="dropdown-menu bg-dark">  
+                            <a *ngFor="let category of categories" 
+                                class="dropdown-item text-white categories">
+                                <a *ngIf="category.type === IMAGES"
+                                   class="categoryType" 
+                                   routerLink="/images" 
+                                   [queryParams]="{categoryId: category.id , imagesById: true}">
+                                   {{category.name}}
+                                </a>
+                                <a *ngIf="category.type === SALES" 
+                                   class="categoryType"
+                                   routerLink="/products" 
+                                   [queryParams]="{categoryId: category.id , productsById: true}">
+                                   {{category.name}}
+                                </a>
+                            </a>
+                        </div>
+                    </li>
+                    <!--Categories ends-->
+
+                    <li class="nav-item" routerLinkActive="active">
+                        <a class="nav-link"  
+                           [routerLink]="['/login-form']">
+                           User
+                        </a>
+                    </li>
+                    <li class="nav-item" routerLinkActive="active">
+                        <a *ngIf="activateRole === 'ADMIN'" 
+                           class="nav-link"  
+                           [routerLink]="['/user-list']">
+                           User list
+                        </a>
+                    </li>
+                    <li class="nav-item logOutNav">
+                        <a class="nav-link"
+                           id="logOut"  
+                           [routerLink]="['/']">
+                           Salir
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Cart-->
+            <a class="cart" routerLink="/cart-pay">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge badge-warning text-white amount">{{amountItems}}</span>
+            </a>
+            <!--Cart ends-->
+
+            <!--User and log out-->
+            <div class="nav-item dropdown" id="userName">
+                <a class="nav-link userNameLink" 
+                   data-toggle="dropdown" href="#" 
+                   role="button" 
+                   aria-haspopup="true" 
+                   aria-expanded="false">
+                   <span class="ml-auto p-2 bd-highlight text-white">
+                       <i class="fas fa-user-circle"></i> 
+                       {{userName}}
+                   </span>
+                </a>
+                <div class="dropdown-menu bg-dark">  
+                    <a class="dropdown-item text-white categories">
+                        <a class="nav-link categoryType"
+                           id="logOut"  
+                           [routerLink]="['/']">
+                           Salir
+                        </a>
+                    </a>
+                </div>
+            </div>
+            <!--User and log out ends-->
+        </nav>
+    </div>
+</div>
+<!--End nav bar-->
