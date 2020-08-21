@@ -41,6 +41,14 @@ public interface ISaleRepository extends JpaRepository<Sale, Long> {
 	List<Sale> searchByParams(@Param("date_approved") String date_approved, @Param("userName") String userName, @Param("userMail") String userMail);
 	
 	/**
+	 * Search totals by specific year for each month
+	 * @return List
+	 * @param year
+	 */
+	@Query("SELECT s SUM(s.total) AS total, MONTHNAME(s.date_approved) AS Month FROM Sale s WHERE YEAR(s.date_approved) = :year GROUP BY Month")
+	List<String> searchByParams(@Param("year") String year);
+	
+	/**
 	 * Update userName from all sales by userName
 	 * @param userNameNew
 	 * @param userNameOld
